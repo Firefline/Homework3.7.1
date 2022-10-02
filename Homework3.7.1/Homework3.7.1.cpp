@@ -4,21 +4,21 @@
 #include <iostream>
 #define MODE 1
 
+#ifndef MODE
+#error Значение не определено. Завершение работы
+#endif
+
 #if MODE == 0
-void training() { std::cout << "Работаю в режиме тренировки" << std::endl; }
+int main(int argc, char** argv)
+{
+    setlocale(LC_ALL, "Russian");
+    std::cout << "Работаю в режиме тренировки" << std::endl;
+}
 #elif MODE == 1
 double add(int a, int b) 
 {
     return a + b;
 }
-#else
-void stop() { std::cout << "Неизвестный режим. Завершение работы" << std::endl; }
-#endif
-
-#ifndef MODE
-#error Значение не определено. Завершение работы
-#endif
-
 int main(int argc, char** argv)
 {
     setlocale(LC_ALL, "Russian");
@@ -30,6 +30,13 @@ int main(int argc, char** argv)
     std::cin >> num_b;
     std::cout << "Результат сложения: " << add(num_a, num_b) << std::endl;
 }
+#else
+int main(int argc, char** argv)
+{
+    setlocale(LC_ALL, "Russian");
+    std::cout << "Неизвестный режим. Завершение работы" << std::endl;
+}
+#endif
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
